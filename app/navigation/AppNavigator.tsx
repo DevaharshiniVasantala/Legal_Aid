@@ -8,10 +8,12 @@ import KnowYourRights from '../screens/KnowYourRights';
 import LanguageSelection from '../screens/LanguageSelection';
 import LoginScreen from '../screens/LoginScreen';
 import UploadDocs from '../screens/UploadDocs';
+import RegisterScreen from '../screens/RegisterScreen';
 
 export type RootStackParamList = {
   LanguageSelection: undefined;
   LoginScreen: { language: string };
+  RegisterScreen:{language:string};
   HomeScreen: { language: string };
   KnowYourRights: undefined;
   UploadDocs: undefined;
@@ -26,6 +28,7 @@ const AppNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="KnowYourRights" component={KnowYourRights} />
       <Stack.Screen name="UploadDocs" component={UploadDocs} />
