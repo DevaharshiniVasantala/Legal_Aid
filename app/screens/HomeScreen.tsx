@@ -1,7 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, useColorScheme } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../constants/theme';
 import DashboardCard from '../component/DashboardCard';
 import { RootStackParamList } from '../navigation/AppNavigator';
@@ -13,10 +13,9 @@ const HomeScreen: React.FC = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'HomeScreen'>>();
   const { language } = route.params;
 
-  const colorScheme = useColorScheme();
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors.light;
-
+  // Labels for multilingual support
   const labels = {
+    home: language === 'Telugu' ? 'హోమ్' : 'Home',
     knowRights: language === 'Telugu' ? 'మీ హక్కులు తెలుసుకోండి' : 'Know Your Rights',
     uploadDocs: language === 'Telugu' ? 'డాక్యుమెంట్లను అప్‌లోడ్ చేయండి' : 'Upload Docs',
     fileGrievance: language === 'Telugu' ? 'ఫిర్యాదు చేయండి' : 'File Grievance',
@@ -24,6 +23,7 @@ const HomeScreen: React.FC = () => {
     logout: language === 'Telugu' ? 'లాగ్ అవుట్' : 'Log Out',
   };
 
+  // Logout and navigate back to language selection
   const handleLogout = () => {
     navigation.reset({
       index: 0,
@@ -32,18 +32,17 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}>
+    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}>
       {/* Top Bar */}
       <View style={styles.topBar}>
-        <Text style={[styles.title, { color: themeColors.primary }]}>
-          {language === 'Telugu' ? 'హోమ్' : 'Home'}
-        </Text>
+        <Text style={[styles.title, { color: colors.primary }]}>{labels.home}</Text>
+
         <TouchableOpacity
-          style={[styles.logoutButton, { backgroundColor: themeColors.primary }]}
+          style={[styles.logoutButton, { backgroundColor: colors.primary }]}
           onPress={handleLogout}
           activeOpacity={0.7}
         >
-          <Text style={[styles.logoutText, { color: themeColors.background }]}>{labels.logout}</Text>
+          <Text style={[styles.logoutText, { color: colors.background }]}>{labels.logout}</Text>
         </TouchableOpacity>
       </View>
 
@@ -70,25 +69,31 @@ const HomeScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
     flexGrow: 1,
+    paddingVertical: 30,
     alignItems: 'center',
+    backgroundColor: colors.background,
   },
   topBar: {
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 25,
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
   },
   logoutButton: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 10,
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   logoutText: {
     fontSize: 14,

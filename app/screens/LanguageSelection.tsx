@@ -1,37 +1,33 @@
-// app/screens/LanguageSelection.tsx
-
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, useColorScheme } from 'react-native';
-import { colors } from '../../constants/theme'; // updated path for Expo
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from '../../constants/theme'; // updated theme import
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const LanguageSelection: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
-  const colorScheme = useColorScheme(); // 'light' | 'dark'
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors.light;
 
   return (
-    <View style={[styles.container, { backgroundColor: themeColors.background }]}>
-      <Text style={[styles.title, { color: themeColors.primary }]}>Select Language</Text>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.title, { color: colors.primary }]}>Select Language</Text>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: themeColors.primary }]}
+        style={[styles.button, { backgroundColor: colors.primary }]}
         onPress={() => navigation.navigate('LoginScreen', { language: 'Telugu' })}
         activeOpacity={0.8}
       >
-        <Text style={[styles.buttonText, { color: themeColors.background }]}>తెలుగు</Text>
+        <Text style={[styles.buttonText, { color: colors.background }]}>తెలుగు</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: themeColors.primary }]}
+        style={[styles.button, { backgroundColor: colors.primary }]}
         onPress={() => navigation.navigate('LoginScreen', { language: 'English' })}
         activeOpacity={0.8}
       >
-        <Text style={[styles.buttonText, { color: themeColors.background }]}>English</Text>
+        <Text style={[styles.buttonText, { color: colors.background }]}>English</Text>
       </TouchableOpacity>
     </View>
   );

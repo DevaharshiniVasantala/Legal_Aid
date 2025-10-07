@@ -1,10 +1,8 @@
-// app/screens/UploadDocs.tsx
-
 import { RouteProp, useRoute } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from '../../constants/theme'; // updated theme import
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 interface FileInfo {
@@ -20,9 +18,6 @@ type PickedDocument =
   | { type: 'success'; uri: string; name: string; size?: number | null; mimeType?: string | null };
 
 const UploadDocs: React.FC = () => {
-  const colorScheme = useColorScheme();
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors.light;
-
   const [files, setFiles] = useState<FileInfo[]>([]);
   const route = useRoute<RouteProp<RootStackParamList, 'UploadDocs'>>();
   const language = (route.params as { language?: string } | undefined)?.language || 'English';
@@ -48,13 +43,13 @@ const UploadDocs: React.FC = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: themeColors.background }]}>
-      <Text style={[styles.title, { color: themeColors.primary }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.title, { color: colors.primary }]}>
         {language === 'Telugu' ? 'డాక్యుమెంట్లను అప్‌లోడ్ చేయండి' : 'Upload Documents'}
       </Text>
 
-      <TouchableOpacity style={[styles.button, { backgroundColor: themeColors.primary }]} onPress={pickDocument}>
-        <Text style={[styles.buttonText, { color: themeColors.background }]}>
+      <TouchableOpacity style={[styles.button, { backgroundColor: colors.primary }]} onPress={pickDocument}>
+        <Text style={[styles.buttonText, { color: colors.background }]}>
           {language === 'Telugu' ? 'ఫైళ్ళను ఎంచుకోండి' : 'Select Files'}
         </Text>
       </TouchableOpacity>
@@ -63,7 +58,7 @@ const UploadDocs: React.FC = () => {
         data={files}
         keyExtractor={(item) => item.uri}
         renderItem={({ item }) => (
-          <Text style={[styles.fileText, { color: themeColors.text }]}>
+          <Text style={[styles.fileText, { color: colors.text }]}>
             {language === 'Telugu' ? 'ఫైల్: ' : 'File: '} {item.name}
           </Text>
         )}

@@ -1,6 +1,5 @@
-// src/components/DashboardCard.tsx
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../../constants/theme';
 
 interface DashboardCardProps {
@@ -9,16 +8,13 @@ interface DashboardCardProps {
 }
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title, onPress }) => {
-  const colorScheme = useColorScheme(); // 'light' | 'dark'
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors.light;
-
   return (
     <TouchableOpacity
-      style={[styles.card, { backgroundColor: themeColors.primary }]}
+      style={[styles.card, { backgroundColor: colors.primary }]}
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <Text style={[styles.text, { color: themeColors.background }]}>{title}</Text>
+      <Text style={[styles.text, { color: colors.background }]}>{title}</Text>
     </TouchableOpacity>
   );
 };

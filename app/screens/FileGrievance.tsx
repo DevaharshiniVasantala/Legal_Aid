@@ -8,20 +8,15 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
-  useColorScheme,
+  TouchableOpacity
 } from 'react-native';
-import { colors } from '../../constants/theme'; // Updated path for Expo
+import { colors } from '../../constants/theme'; // ✅ updated path for Expo
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 const FileGrievance: React.FC = () => {
   const [grievance, setGrievance] = useState('');
   const route = useRoute<RouteProp<RootStackParamList, 'FileGrievance'>>();
   const language = (route.params as { language?: string } | undefined)?.language || 'English';
-
-  // Select light/dark theme
-  const colorScheme = useColorScheme(); // 'light' | 'dark'
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors.light;
 
   const handleSubmit = () => {
     Alert.alert(
@@ -32,25 +27,25 @@ const FileGrievance: React.FC = () => {
 
   return (
     <KeyboardAvoidingView
-      style={[styles.container, { backgroundColor: themeColors.background }]}
+      style={[styles.container, { backgroundColor: colors.background }]}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={[styles.title, { color: themeColors.primary }]}>
+        <Text style={[styles.title, { color: colors.text }]}>
           {language === 'Telugu' ? 'ఫిర్యాదు చేయండి' : 'File Grievance'}
         </Text>
 
         <TextInput
           style={[
             styles.input,
-            { borderColor: themeColors.primary, color: themeColors.text },
+            { borderColor: colors.primary, color: colors.text },
           ]}
           placeholder={
             language === 'Telugu'
               ? 'ఇక్కడ మీ ఫిర్యాదు టైప్ చేయండి'
               : 'Type your grievance here'
           }
-          placeholderTextColor={themeColors.text}
+          placeholderTextColor={colors.subText}
           multiline
           numberOfLines={6}
           value={grievance}
@@ -58,11 +53,11 @@ const FileGrievance: React.FC = () => {
         />
 
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: themeColors.primary }]}
+          style={[styles.button, { backgroundColor: colors.primary }]}
           onPress={handleSubmit}
           activeOpacity={0.8}
         >
-          <Text style={[styles.buttonText, { color: themeColors.background }]}>
+          <Text style={[styles.buttonText, { color: colors.text }]}>
             {language === 'Telugu' ? 'సమర్పించండి' : 'Submit'}
           </Text>
         </TouchableOpacity>
@@ -88,20 +83,21 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 15,
     textAlignVertical: 'top',
-    marginBottom: 20,
+    marginBottom: 25,
+    backgroundColor: '#FFFFFF',
     minHeight: 150,
   },
   button: {
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 12,
   },
   buttonText: {
     fontSize: 18,
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: '700',
   },
 });
 
