@@ -1,6 +1,6 @@
 // constants/theme.ts
 export const colors = {
-  primary: '#FFD300',      // Peach tone — main brand/accent color
+  primary: '#8f7db8',      // Peach tone — main brand/accent color
   background: '#FAF9F6',   // Blue-gray tone — page background
   card: '#FFFFFF',         // White cards
   text: '#3A3A3A',         // Main text color (dark)
